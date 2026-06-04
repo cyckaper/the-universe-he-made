@@ -277,10 +277,19 @@ function selectNode(n){
   document.getElementById('ptagtxt').textContent = (n.gen===0? k.en : k.en+' · '+k.zh);
   document.getElementById('pname').textContent=n.name;
   document.getElementById('prole').textContent=n.role||'';
-  document.getElementById('pdetail').textContent=n.detail||'';
-  document.getElementById('pdetailzh').textContent=n.detailZh||'';
+  const msgEl=document.getElementById('pmessage');
+  const dEl=document.getElementById('pdetail');
+  const dzEl=document.getElementById('pdetailzh');
+  if(n.message){
+    msgEl.textContent=n.message; msgEl.style.display='block';
+    dEl.style.display='none'; dzEl.style.display='none';
+  } else {
+    msgEl.style.display='none';
+    dEl.textContent=n.detail||''; dEl.style.display=n.detail?'block':'none';
+    dzEl.textContent=n.detailZh||''; dzEl.style.display=n.detailZh?'block':'none';
+  }
   const hint=document.getElementById('phint');
-  hint.textContent = n.placeholder ? '✎ 範例節點 — 在原始碼的 universe.nodes 裡換成真實的人' : '';
+  hint.textContent = n.placeholder ? '✎ 範例節點 — 在 assets/js/data.js 裡換成真實的人，或刪除這顆星' : '';
   hint.style.display = n.placeholder?'block':'none';
   panel.classList.add('show');
   if(n.gen!==0){ cam.tx=n.x; cam.ty=n.y; cam.ts=Math.max(cam.ts,1.7); }
