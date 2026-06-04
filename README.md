@@ -40,7 +40,7 @@
 
 想加人，就往 `nodes` 陣列再 `push` 一個物件；座標會自動排列，不必手算位置。
 
-> 目前真實節點：Sullivan 教授本人、Bin Jiang（江斌，現任香港大學副教授）、以及「綠地與心理健康」研究脈絡。其餘為清楚標示的範例，待你填入真實名單。
+> 真實節點：Sullivan 教授本人，以及 Shih-Han (Shelly) Hung、Yu-Chen Yeh、Julie (Yu-Hsin Tung)、Kao Yu-Chieh 高語婕、Chun-Yen Chang 張俊彥、Ying-Hung Li、Bin Jiang 江斌——每位都附上想對 Bill 說的話。gen2／gen3（他們的學生、延續的研究）為清楚標示的範例，可填入或刪除。
 
 ## 本地預覽
 
