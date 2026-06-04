@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>The Universe He Made · A Tribute to Prof. William C. Sullivan</title>
+<meta name="description" content="An Impact Map celebrating the retirement of Prof. William C. Sullivan (UIUC) — a map not of one man, but of everyone he changed." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=EB+Garamond:ital@0;1&family=Noto+Serif+TC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<canvas id="sky"></canvas>
+
+<!-- corners -->
+<div class="corner title-tl" id="titleTL">
+  <div class="eyebrow">A tribute to a teacher</div>
+  <h1>The Universe<br>He Made</h1>
+  <div class="zh">獻給 William C. Sullivan 教授 · UIUC</div>
+</div>
+
+<div class="corner counter" id="counterEl">
+  <div class="num" id="countNum">0</div>
+  <div class="lbl">lives touched, and counting<br><span class="zh">被改變的人，仍在增加</span></div>
+</div>
+
+<div class="legend corner" id="legendEl"></div>
+
+<div class="controls corner" id="controlsEl">
+  <button class="btn" id="resetBtn">Recenter <span class="zh">回到中心</span></button>
+  <button class="btn" id="endBtn">What remains <span class="zh">他真正留下的</span></button>
+</div>
+
+<!-- info panel -->
+<div id="panel">
+  <span class="pclose" id="pclose">×</span>
+  <div class="ptag" id="ptag"><span class="pdot"></span><span id="ptagtxt"></span></div>
+  <h2 id="pname"></h2>
+  <div class="prole" id="prole"></div>
+  <div class="pdetail" id="pdetail"></div>
+  <div class="pdetail zh" id="pdetailzh"></div>
+  <div class="phint" id="phint"></div>
+</div>
+
+<!-- intro -->
+<div id="intro">
+  <div class="seed"></div>
+  <div class="lead">This is not a map of one man.</div>
+  <div class="big">It is a map of everyone he changed.</div>
+  <div class="zh">這不是一個人的地圖，<br>而是被他改變的所有人。</div>
+  <button id="enter">ENTER THE UNIVERSE<span class="zh">進入這片星空</span></button>
+</div>
+
+<!-- ending -->
+<div id="ending">
+  <div class="star efade" style="animation-delay:.1s"></div>
+  <div class="e1 efade" style="animation-delay:.4s">A teacher's truest legacy</div>
+  <div class="e2 efade" style="animation-delay:1.1s">was never the papers.<br>It was the people who were changed.</div>
+  <div class="ezh efade" style="animation-delay:2.2s">一位老師真正留下的，<br>從來不是論文，<br>而是被改變的人。</div>
+  <div class="sig efade" style="animation-delay:3.2s">With gratitude, from your colleagues and students across the Pacific.<span class="zh">來自太平洋彼岸的同事與學生，獻上敬意。</span></div>
+  <button class="eback efade" id="ebackBtn" style="animation-delay:3.8s">Return to the stars</button>
+</div>
+<!-- 資料先載入（你編輯名單只需改這個檔），引擎其後 -->
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
