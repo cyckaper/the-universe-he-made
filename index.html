@@ -95,7 +95,7 @@
     bottom:clamp(18px,3vw,38px);display:flex;gap:10px;
     opacity:0;transition:opacity 1.6s ease 1s;
   }
-  .controls.show{opacity:1;}
+  .controls.show{opacity:1;pointer-events:auto;}
   .btn{
     font-family:'Cormorant Garamond',serif;
     background:rgba(244,213,141,.06);
@@ -268,6 +268,13 @@
   #draftLoad:hover{background:rgba(244,213,141,.3);}
   #draftDiscard{background:transparent;color:var(--ink-soft);border-color:rgba(233,227,212,.2);}
   #draftDiscard:hover{color:var(--ink);}
+
+  /* edit-this-star button inside the read-only card */
+  #pedit{display:none;margin-top:16px;width:100%;
+    font-family:'Cormorant Garamond','Noto Serif TC',serif;font-size:15px;letter-spacing:.05em;
+    background:rgba(244,213,141,.1);border:1px solid rgba(244,213,141,.4);color:var(--gold);
+    border-radius:40px;padding:10px;cursor:pointer;transition:all .3s;}
+  #pedit:hover{background:rgba(244,213,141,.2);border-color:rgba(244,213,141,.65);color:var(--gold-bright);}
 </style>
 </head>
 <body>
@@ -305,6 +312,7 @@
   <div class="pdetail" id="pdetail"></div>
   <div class="pdetail zh" id="pdetailzh"></div>
   <div class="phint" id="phint"></div>
+  <button id="pedit">✎ 編輯這顆星 · Edit</button>
   <div id="editform" style="display:none">
     <div class="erow" id="row_kind"><label>類型 Type</label>
       <select id="f_kind">
@@ -744,6 +752,7 @@ function selectNode(n){
   if(editMode) return openEditor(n);
   focusId=n.id;
   document.getElementById('editform').style.display='none';
+  document.getElementById('pedit').style.display='block';
   panel.classList.remove('editing');
   ['ptag','pname','prole'].forEach(id=>document.getElementById(id).style.display='');
   const k=KIND[n.kind]||KIND.research;
@@ -866,6 +875,7 @@ function openEditor(n){
   editingId=n.id; focusId=n.id;
   const isC=(n.gen===0);
   ['ptag','pname','prole','pmessage','pdetail','pdetailzh','phint'].forEach(id=>$(id).style.display='none');
+  $('pedit').style.display='none';
   $('editform').style.display='block';
   panel.classList.add('show','editing');
   $('f_kind').value = isC?'center':n.kind;
@@ -933,6 +943,7 @@ function checkDraft(){
 }
 function wireEditor(){
   $('editToggle').addEventListener('click',()=>setEditMode(!editMode));
+  $('pedit').addEventListener('click',()=>{ if(focusId&&byId[focusId]) openEditor(byId[focusId]); });
   $('addBtn').addEventListener('click',addStar);
   $('exportBtn').addEventListener('click',exportHTML);
   $('f_save').addEventListener('click',saveEditor);
