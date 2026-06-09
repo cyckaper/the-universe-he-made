@@ -374,18 +374,11 @@
 /* =====================================================================
    THE UNIVERSE HE MADE — Impact Map for Prof. William C. Sullivan
    ---------------------------------------------------------------------
-   HOW TO EDIT (or just use the in-app editor: tap a star, then Edit)
-     center : the middle (Prof. Sullivan himself)
-     nodes  : every surrounding star. Fields:
-        id        unique short code (letters/numbers, no duplicates)
-        gen       layer: 1 = student/friend; 2 = their student; 3 = outcome
-        parent    the id this star orbits (gen1 orbits 'wcs')
-        kind      'phd' 'masters' 'undergrad' 'friend' 'student2' 'company' 'research'
-        name      display name
-        role      one-line path, use → for "from … to …"
-        message   what this person wants to say to Bill (shown as a quote)
-        detail    description (shown only when there is no message)
-        placeholder: true  marks an example star (dashed, dim)
+   Editing is owner-only. Open the site with #edit at the end of the URL
+   to get the edit tools (tap a star ▸ Edit, or ＋ Add a star), then use
+   ⤓ Export & publish to download an updated index.html and upload it to
+   GitHub. Visitors without #edit can only view.
+   Fields per node: id, gen(1/2/3), parent, kind, name, role, message, detail.
    ===================================================================== */
 
 const universe = {
@@ -395,79 +388,85 @@ const universe = {
     detail:"Co-founder of the Landscape and Human Health Laboratory. For decades he asked a single question — how do the landscapes we design shape human wellbeing? — and taught a generation to pursue it with both rigor and heart."
   },
   nodes:[
-    /* ---------- GEN 1 · students & friends ---------- */
     { id:'shelly', gen:1, parent:'wcs', kind:'phd',
       name:'Shih-Han “Shelly” Hung',
       role:"Exchange MS & PhD · dissertation committee → Assistant Professor, Master's Program in Biodiversity, National Taiwan University",
       message:"Congratulations on your retirement, Bill. Over the past fifteen years, you have played an important role in my academic journey — as my master's and doctoral committee member, collaborator, mentor, and friend. Thank you for your encouragement, generosity, and unwavering support. I wish you a joyful, healthy, and rewarding retirement, and I look forward to staying connected in the years ahead 🙌😀🧡" },
-
-    { id:'yuchen', gen:1, parent:'wcs', kind:'phd',
-      name:'Yu-Chen Yeh',
-      role:'PhD dissertation committee → Assistant Professor, Dept. of Leisure Industry & Health Promotion, National Taipei University of Nursing and Health Sciences',
-      message:"Thank you, Bill, for being part of my PhD journey. Your guidance and encouragement meant a lot to me. Congratulations on your retirement, and I wish you happiness, good health, and many wonderful adventures ahead!" },
-
-    { id:'julie', gen:1, parent:'wcs', kind:'phd',
-      name:'Julie · Yu-Hsin Tung',
-      role:"Master's Exchange & PhD · dissertation committee → Assistant Professor, Fu Jen Catholic University",
-      message:"Thank you for your tireless dedication to teaching and your invaluable mentorship. May your retirement be filled with joy, rest, and abundant blessings." },
-
-    { id:'kao', gen:1, parent:'wcs', kind:'masters',
-      name:'Kao Yu-Chieh',
-      role:"Master's Exchange (research project) → Landscape Designer, Classicdesign Co., Ltd.",
-      message:"Although I was always nervous in class, learning with you at UIUC remains one of the most unforgettable memories of my life. Congratulations on your retirement!" },
 
     { id:'cyc', gen:1, parent:'wcs', kind:'friend',
       name:'CYC · Chun-Yen Chang',
       role:'Friend → Professor, National Taiwan University',
       message:"Now you're getting out of a long line of faculty meetings!" },
 
+    { id:'kao', gen:1, parent:'wcs', kind:'masters',
+      name:'Kao Yu-Chieh 高語婕',
+      role:"Research project during Master's Exchange → Landscape Designer, Classicdesign Co., Ltd.",
+      message:"Although I was always nervous in class, learning with you at UIUC remains one of the most unforgettable memories of my life. Congratulations on your retirement!" },
+
+    { id:'ou', gen:1, parent:'wcs', kind:'friend',
+      name:'Sheng-Jung Ou',
+      role:'Friend → Professor, National Chung Hsing University',
+      message:"Congratulations on a magnificent and legendary career! Enjoy the freedom of your new life, and may this next chapter bring you the ultimate fulfillment and happiness." },
+
+    { id:'yuchen', gen:1, parent:'wcs', kind:'phd',
+      name:'Yu-Chen Yeh',
+      role:'PhD dissertation committee → Assistant Professor, Dept. of Leisure Industry & Health Promotion, National Taipei University of Nursing and Health Sciences',
+      message:"Thank you, Bill, for being part of my PhD journey. Your guidance and encouragement meant a lot to me. Congratulations on your retirement, and I wish you happiness, good health, and many wonderful adventures ahead!" },
+
+    { id:'huimei', gen:1, parent:'wcs', kind:'friend',
+      name:'Hui-Mei Chen 陳惠美',
+      role:'Friend → Professor, National Taiwan University',
+      message:"Through our brief interactions on several occasions, I have deeply felt your wisdom in sharing professional expertise with warmth and humor, which has inspired me to become a better person." },
+
+    { id:'julie', gen:1, parent:'wcs', kind:'phd',
+      name:'Julie · Yu-Hsin Tung',
+      role:"Master's Exchange & PhD · dissertation committee → Assistant Professor, Fu Jen Catholic University",
+      message:"Thank you for your tireless dedication to teaching and your invaluable mentorship. May your retirement be filled with joy, rest, and abundant blessings." },
+
+    { id:'ckcheng', gen:1, parent:'wcs', kind:'friend',
+      name:'CK Cheng 鄭佳昆',
+      role:'Friend → Associate Professor, National Taiwan University',
+      message:"Congratulations on your retirement, Dr. Sullivan! Thank you for your remarkable contributions to the field of Landscape Architecture and to generations of students. Wishing you a joyful new chapter filled with health, freedom, and well-deserved happiness." },
+
+    { id:'lichih', gen:1, parent:'wcs', kind:'phd',
+      name:'Li-Chih Ho 何立智',
+      role:'Dissertation committee → Professor, Tunghai University',
+      message:"Thank you for asking the questions that challenged me to think deeper and see further. Congratulations on your retirement, and best wishes for the exciting journey ahead." },
+
     { id:'yinghung', gen:1, parent:'wcs', kind:'friend',
       name:'Ying-Hung Li',
       role:'Friend → Professor, Feng Chia University',
-      message:"We have worked together, defended together, had dinner together, and drunk together. BUT — guess what — we never... sang together!! Happy retirement!" },
-
-    { id:'jiang', gen:1, parent:'wcs', kind:'phd',
-      name:'Bin Jiang',
-      role:'PhD → Associate Professor, University of Hong Kong',
-      detail:"Now leads the Virtual Reality Lab for Landscape & Health at HKU — carrying the green-space-and-stress question into immersive technology, and training a new generation of his own." },
-
-    /* ---------- GEN 2 · their students (examples: edit or delete) ---------- */
-    { id:'g2_shelly', gen:2, parent:'shelly', kind:'student2', placeholder:true,
-      name:'Her students at NTU', role:'The next generation',
-      detail:"Shelly now mentors her own students — the line continues. Tap Edit to name one, or delete this star." },
-    { id:'g2_julie', gen:2, parent:'julie', kind:'student2', placeholder:true,
-      name:'Her students at Fu Jen', role:'The next generation',
-      detail:"Tap Edit to fill in, or delete." },
-    { id:'g2_jiang', gen:2, parent:'jiang', kind:'student2', placeholder:true,
-      name:"Bin Jiang's students at HKU", role:'The third generation',
-      detail:"Tap Edit to fill in, or delete." },
-
-    /* ---------- GEN 3 · outcomes (research / ventures) ---------- */
-    { id:'r_green', gen:3, parent:'jiang', kind:'research',
-      name:'Green space & mental health',
-      role:'A whole field of evidence',
-      detail:"Hundreds of studies worldwide now measure how nature restores attention, lowers stress and heals — a research tradition that traces back to this lab." },
-    { id:'r_research', gen:3, parent:'shelly', kind:'research', placeholder:true,
-      name:'Research carried forward', role:'Ideas outliving their author',
-      detail:"Tap Edit to fill in, or delete — a paper, a method, a question students keep building on." }
+      message:"We have worked together, oral defense together, dinner together, and drinking together. BUT — guess what — we never... sang together!! Happy retirement!" }
   ]
 };
 
 /* ---------- kind → colour / label ---------- */
 const KIND = {
   center:   {c:'#f4d58d', en:'The teacher'},
-  phd:      {c:'#ffd27a', en:'Doctoral student'},
-  masters:  {c:'#9ad0c2', en:"Master's student"},
+  phd:      {c:'#ffd27a', en:'Doctoral / committee'},
+  masters:  {c:'#9ad0c2', en:"Master's"},
   undergrad:{c:'#c9e4a6', en:'Undergraduate'},
-  friend:   {c:'#e7a6ce', en:'Friend'},
+  friend:   {c:'#e7a6ce', en:'Friend & colleague'},
   student2: {c:'#b5a7e6', en:"A student's student"},
   company:  {c:'#f2a3a3', en:'Founded / built'},
   research: {c:'#87c5e8', en:'Research carried on'}
 };
-const LEGEND_ORDER = ['phd','masters','friend','student2','company','research'];
+const LEGEND_ORDER = ['phd','masters','friend'];
 /*__UNIVERSE_DATA_END__*/
 </script>
 <script>
+/* ★★★ SHARED BACKEND CONFIG ★★★
+   To let everyone add & edit stars together, paste your Google Apps Script
+   Web App URL (ends with /exec) between the quotes below.
+   Leave it as "" to run in local/offline preview mode. */
+const BACKEND_URL = "";
+const BACKEND = !!BACKEND_URL;
+
+/* Editing is OWNER-ONLY. The edit tools appear only if the URL ends with #edit
+   (e.g. the-universe-he-made.netlify.app/#edit). The link you share to others
+   has no #edit, so they can only view — nothing can be accidentally deleted. */
+const OWNER = location.hash.toLowerCase().indexOf('edit') >= 0;
+
 /* ===================== ENGINE ===================== */
 const cv = document.getElementById('sky');
 const ctx = cv.getContext('2d');
@@ -744,7 +743,7 @@ function selectNode(n){
   if(editMode) return openEditor(n);
   focusId=n.id;
   document.getElementById('editform').style.display='none';
-  document.getElementById('pedit').style.display='block';
+  document.getElementById('pedit').style.display = OWNER ? 'block' : 'none';
   panel.classList.remove('editing');
   ['ptag','pname','prole'].forEach(id=>document.getElementById(id).style.display='');
   const k=KIND[n.kind]||KIND.research;
@@ -883,7 +882,7 @@ function openEditor(n){
   toggleParentRow();
   if(!isC){ cam.tx=n.x; cam.ty=n.y; cam.ts=Math.max(cam.ts,1.7); } else recenter();
 }
-function saveEditor(){
+async function saveEditor(){
   const n=byId[editingId]; if(!n) return;
   if(n.gen!==0){
     n.kind=$('f_kind').value;
@@ -896,23 +895,39 @@ function saveEditor(){
   const m=$('f_message').value.trim(), d=$('f_detail').value.trim();
   if(m) n.message=m; else delete n.message;
   if(d) n.detail=d; else delete n.detail;
-  rebuildIndex(); layout(); persistDraft();
-  const b=$('f_save'), t=b.textContent; b.textContent='Saved ✓'; setTimeout(()=>{b.textContent=t;},1100);
+  rebuildIndex(); layout();
+  if(BACKEND && n.gen!==0){
+    flashBtn($('f_save'),'Saving…');
+    const payload={action:n._new?'add':'update', id:n.id, gen:n.gen, parent:n.parent,
+                   kind:n.kind, name:n.name, role:n.role||'', message:n.message||'', detail:n.detail||''};
+    try{
+      const res=await jsonp(payload);
+      if(res && res.ok){
+        if(n._new && res.id){ delete byId[n.id]; n.id=res.id; byId[n.id]=n; editingId=n.id; }
+        delete n._new; flashBtn($('f_save'),'Saved ✓');
+      } else { flashBtn($('f_save'),'Error'); showToast('Save failed: '+((res&&res.error)||'unknown')); }
+    }catch(e){ flashBtn($('f_save'),'Offline'); showToast('Could not reach the server — not saved.'); }
+  } else {
+    persistDraft(); flashBtn($('f_save'),'Saved ✓');
+  }
 }
 function addStar(){
-  const n={id:uid(),gen:1,parent:'wcs',kind:'phd',name:'New star',role:'',message:''};
-  universe.nodes.push(n); rebuildIndex(); layout(); persistDraft();
+  const n={id:uid(),gen:1,parent:'wcs',kind:'phd',name:'New star',role:'',message:'',_new:true};
+  universe.nodes.push(n); rebuildIndex(); layout();
   if($('countNum')) $('countNum').textContent=universe.nodes.length;
-  if(!editMode) setEditMode(true);
+  if(!BACKEND){ persistDraft(); if(!editMode) setEditMode(true); }
   openEditor(n);
 }
-function deleteStar(){
+async function deleteStar(){
   const n=byId[editingId]; if(!n||n.gen===0) return;
   if(!confirm('Delete "'+n.name+'"? This cannot be undone.')) return;
+  const wasNew=n._new, delId=n.id;
   universe.nodes.forEach(c=>{ if(c.parent===n.id) c.parent=n.parent||'wcs'; });
   const i=universe.nodes.indexOf(n); if(i>=0) universe.nodes.splice(i,1);
-  rebuildIndex(); layout(); persistDraft(); closePanel();
+  rebuildIndex(); layout(); closePanel();
   if($('countNum')) $('countNum').textContent=universe.nodes.length;
+  if(BACKEND){ if(!wasNew){ try{ await jsonp({action:'delete', id:delId}); }catch(e){ showToast('Server delete failed — it may reappear on reload.'); } } }
+  else { persistDraft(); }
 }
 function exportHTML(){
   const code='const universe = '+JSON.stringify(currentData(),null,2)+';\n'
@@ -933,6 +948,46 @@ function checkDraft(){
   $('draftLoad').onclick=()=>{ try{ applyData(JSON.parse(raw)); }catch(e){} $('draftbar').style.display='none'; };
   $('draftDiscard').onclick=()=>{ try{ localStorage.removeItem(DRAFT_KEY); }catch(e){} $('draftbar').style.display='none'; };
 }
+/* ----- shared backend (JSONP: works from a static file, no CORS) ----- */
+let _jid=0;
+function jsonp(params){
+  return new Promise((resolve,reject)=>{
+    const cb='_tuhm_cb'+(++_jid);
+    const s=document.createElement('script');
+    let timer;
+    function cleanup(){ try{delete window[cb];}catch(e){} if(s.parentNode)s.parentNode.removeChild(s); clearTimeout(timer); }
+    timer=setTimeout(()=>{ cleanup(); reject(new Error('timeout')); },15000);
+    window[cb]=(data)=>{ cleanup(); resolve(data); };
+    const q=Object.keys(params).map(k=>encodeURIComponent(k)+'='+encodeURIComponent(params[k]==null?'':params[k])).join('&');
+    s.onerror=()=>{ cleanup(); reject(new Error('network')); };
+    s.src=BACKEND_URL+'?callback='+encodeURIComponent(cb)+(q?'&'+q:'');
+    document.body.appendChild(s);
+  });
+}
+function normalizeRow(r){
+  return { id:String(r.id), gen:Number(r.gen)||1, parent:String(r.parent||'wcs'),
+           kind:String(r.kind||'friend'), name:String(r.name||''),
+           role:r.role||'', message:r.message||'', detail:r.detail||'' };
+}
+async function loadFromBackend(){
+  try{
+    const res=await jsonp({action:'list'});
+    if(res && res.ok && Array.isArray(res.stars)){
+      universe.nodes.length=0;
+      res.stars.forEach(r=>universe.nodes.push(normalizeRow(r)));
+      rebuildIndex(); layout(); buildLegend();
+      if($('countNum')) $('countNum').textContent=universe.nodes.length;
+    } else { showToast('Could not load the shared list.'); }
+  }catch(e){ showToast('Offline — showing the starting set. Changes may not save.'); }
+}
+let _toastT=null;
+function showToast(msg){
+  const t=$('toast'); if(!t) return;
+  t.textContent=msg; t.style.display='block';
+  clearTimeout(_toastT); _toastT=setTimeout(()=>{ t.style.display='none'; },4200);
+}
+function flashBtn(b,txt){ const o=b.dataset.o||b.textContent; b.dataset.o=o; b.textContent=txt; clearTimeout(b._t); b._t=setTimeout(()=>{b.textContent=b.dataset.o;},1200); }
+
 function wireEditor(){
   $('editToggle').addEventListener('click',()=>setEditMode(!editMode));
   $('pedit').addEventListener('click',()=>{ if(focusId&&byId[focusId]) openEditor(byId[focusId]); });
@@ -947,6 +1002,7 @@ function wireEditor(){
 const PRISTINE_HTML='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
 resize(); makeStars(); buildLegend();
 wireEditor(); checkDraft();
+if(!OWNER){ ['editToggle','addBtn','exportBtn'].forEach(id=>{ var el=document.getElementById(id); if(el) el.style.display='none'; }); }
 window.addEventListener('resize',makeStars);
 requestAnimationFrame(draw);
 </script>
