@@ -388,7 +388,7 @@ const universe = {
     detail:"Co-founder of the Landscape and Human Health Laboratory. For decades he asked a single question — how do the landscapes we design shape human wellbeing? — and taught a generation to pursue it with both rigor and heart."
   },
   nodes:[
-    { id:'shelly', gen:1, parent:'wcs', kind:'phd',
+    { id:'shelly', gen:2, parent:'cyc', kind:'phd',
       name:'Shih-Han “Shelly” Hung',
       role:"Exchange MS & PhD · dissertation committee → Assistant Professor, Master's Program in Biodiversity, National Taiwan University",
       message:"Congratulations on your retirement, Bill. Over the past fifteen years, you have played an important role in my academic journey — as my master's and doctoral committee member, collaborator, mentor, and friend. Thank you for your encouragement, generosity, and unwavering support. I wish you a joyful, healthy, and rewarding retirement, and I look forward to staying connected in the years ahead 🙌😀🧡" },
@@ -398,7 +398,7 @@ const universe = {
       role:'Friend → Professor, National Taiwan University',
       message:"Now you're getting out of a long line of faculty meetings!" },
 
-    { id:'kao', gen:1, parent:'wcs', kind:'masters',
+    { id:'kao', gen:2, parent:'cyc', kind:'masters',
       name:'Kao Yu-Chieh 高語婕',
       role:"Research project during Master's Exchange → Landscape Designer, Classicdesign Co., Ltd.",
       message:"Although I was always nervous in class, learning with you at UIUC remains one of the most unforgettable memories of my life. Congratulations on your retirement!" },
@@ -408,7 +408,7 @@ const universe = {
       role:'Friend → Professor, National Chung Hsing University',
       message:"Congratulations on a magnificent and legendary career! Enjoy the freedom of your new life, and may this next chapter bring you the ultimate fulfillment and happiness." },
 
-    { id:'yuchen', gen:1, parent:'wcs', kind:'phd',
+    { id:'yuchen', gen:2, parent:'cyc', kind:'phd',
       name:'Yu-Chen Yeh',
       role:'PhD dissertation committee → Assistant Professor, Dept. of Leisure Industry & Health Promotion, National Taipei University of Nursing and Health Sciences',
       message:"Thank you, Bill, for being part of my PhD journey. Your guidance and encouragement meant a lot to me. Congratulations on your retirement, and I wish you happiness, good health, and many wonderful adventures ahead!" },
@@ -418,7 +418,7 @@ const universe = {
       role:'Friend → Professor, National Taiwan University',
       message:"Through our brief interactions on several occasions, I have deeply felt your wisdom in sharing professional expertise with warmth and humor, which has inspired me to become a better person." },
 
-    { id:'julie', gen:1, parent:'wcs', kind:'phd',
+    { id:'julie', gen:2, parent:'cyc', kind:'phd',
       name:'Julie · Yu-Hsin Tung',
       role:"Master's Exchange & PhD · dissertation committee → Assistant Professor, Fu Jen Catholic University",
       message:"Thank you for your tireless dedication to teaching and your invaluable mentorship. May your retirement be filled with joy, rest, and abundant blessings." },
@@ -428,7 +428,7 @@ const universe = {
       role:'Friend → Associate Professor, National Taiwan University',
       message:"Congratulations on your retirement, Dr. Sullivan! Thank you for your remarkable contributions to the field of Landscape Architecture and to generations of students. Wishing you a joyful new chapter filled with health, freedom, and well-deserved happiness." },
 
-    { id:'lichih', gen:1, parent:'wcs', kind:'phd',
+    { id:'lichih', gen:2, parent:'cyc', kind:'phd',
       name:'Li-Chih Ho 何立智',
       role:'Dissertation committee → Professor, Tunghai University',
       message:"Thank you for asking the questions that challenged me to think deeper and see further. Congratulations on your retirement, and best wishes for the exciting journey ahead." },
@@ -502,7 +502,7 @@ function layout(){
     gg.forEach(n=>{(byP[n.parent]=byP[n.parent]||[]).push(n);});
     Object.values(byP).forEach(group=>{
       const p = byId[group[0].parent] || center;
-      const spread = Math.min(0.55, 0.22*group.length);
+      const spread = Math.min(1.2, 0.28*group.length);
       group.forEach((n,i)=>{
         const off = group.length===1?0:(i/(group.length-1)-0.5)*spread;
         n.angle = (p.angle||0) + off + (g===3?0.04:0);
