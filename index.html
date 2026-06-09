@@ -415,7 +415,7 @@ const universe = {
       role:'Friend → Professor, Feng Chia University',
       message:"We have worked together, oral defense together, dinner together, and drinking together. BUT — guess what — we never... sang together!! Happy retirement!" },
 
-    { id:'rachel', gen:1, parent:'wcs', kind:'friend',
+    { id:'rachel', gen:1, parent:'wcs', kind:'mentor',
       name:'Rachel Kaplan',
       role:"Bill's doctoral advisor, colleague & friend → Professor Emerita, School for Environment and Sustainability, University of Michigan",
       message:"Yet another of your many wise decisions! I can't wait to see what mischief and good deeds the next N years will produce. I look forward to your telling me about it and continuing to learn from your doings and thoughtfulness. — Rachel" },
@@ -487,6 +487,7 @@ const universe = {
 /* ---------- kind → colour / label ---------- */
 const KIND = {
   center:   {c:'#f4d58d', en:'The teacher'},
+  mentor:   {c:'#d9d2ee', en:"His own teacher & mentor"},
   phd:      {c:'#ffd27a', en:'Doctoral / committee'},
   masters:  {c:'#9ad0c2', en:"Master's"},
   undergrad:{c:'#c9e4a6', en:'Undergraduate'},
@@ -495,7 +496,7 @@ const KIND = {
   company:  {c:'#f2a3a3', en:'Founded / built'},
   research: {c:'#87c5e8', en:'Research carried on'}
 };
-const LEGEND_ORDER = ['phd','masters','friend'];
+const LEGEND_ORDER = ['mentor','friend','phd','masters'];
 /*__UNIVERSE_DATA_END__*/
 </script>
 <script>
@@ -534,26 +535,34 @@ const allNodes = [center, ...universe.nodes];
 /* radii scale with screen */
 function radii(){
   const base = Math.min(W,H);
-  return [0, base*0.20, base*0.34, base*0.45];
+  return [0, base*0.16, base*0.30, base*0.43];
 }
 function layout(){
-  const R = radii();
-  const g1 = universe.nodes.filter(n=>n.gen===1);
-  g1.forEach((n,i)=>{ n.angle = (i/g1.length)*Math.PI*2 - Math.PI/2; n.r=R[1]; });
-  [2,3].forEach(g=>{
-    const gg = universe.nodes.filter(n=>n.gen===g);
-    const byP={};
-    gg.forEach(n=>{(byP[n.parent]=byP[n.parent]||[]).push(n);});
-    Object.values(byP).forEach(group=>{
-      const p = byId[group[0].parent] || center;
-      const spread = Math.min(1.2, 0.28*group.length);
-      group.forEach((n,i)=>{
-        const off = group.length===1?0:(i/(group.length-1)-0.5)*spread;
-        n.angle = (p.angle||0) + off + (g===3?0.04:0);
-        n.r = R[g];
-      });
+  const R = radii(); const TAU = Math.PI*2;
+  // the mentor (Bill's own teacher) sits just above Bill, closest to the centre
+  const mentors = universe.nodes.filter(n=>n.kind==='mentor');
+  // ring 1 (inner): friends & colleagues orbiting Bill
+  const inner = universe.nodes.filter(n=>n.parent==='wcs' && n.kind==='friend');
+  // ring 2 (middle): Bill's own students orbiting Bill
+  const mid   = universe.nodes.filter(n=>n.parent==='wcs' && n.kind!=='friend' && n.kind!=='mentor');
+  // ring 3 (outer): anyone orbiting a non-centre person (e.g. a friend's students)
+  const orbit = universe.nodes.filter(n=>n.parent!=='wcs');
+
+  mentors.forEach((n,i)=>{ n.angle = -Math.PI/2 + (mentors.length>1?(i/(mentors.length-1)-0.5)*0.6:0); n.r = R[1]*0.5; });
+  inner.forEach((n,i)=>{ n.angle = (i/Math.max(1,inner.length))*TAU - Math.PI/2; n.r=R[1]; });
+  mid.forEach((n,i)=>{ n.angle = (i/Math.max(1,mid.length))*TAU - Math.PI/2 + Math.PI/Math.max(1,mid.length); n.r=R[2]; });
+
+  const byP={};
+  orbit.forEach(n=>{ (byP[n.parent]=byP[n.parent]||[]).push(n); });
+  Object.keys(byP).forEach(pid=>{
+    const group=byP[pid]; const p=byId[pid]||center;
+    const spread=Math.min(1.4, 0.32*group.length);
+    group.forEach((n,i)=>{
+      const off = group.length===1?0:(i/(group.length-1)-0.5)*spread;
+      n.angle=(p.angle||0)+off; n.r=R[3];
     });
   });
+
   allNodes.forEach(n=>{
     if(n===center){n.x=0;n.y=0;return;}
     n.x=Math.cos(n.angle)*n.r;
@@ -583,7 +592,8 @@ function recenter(){ cam.tx=0; cam.ty=0; cam.ts=1; }
 let revealStart=null;
 function nodeDelay(n){
   if(n.gen===0) return 0;
-  const order={1:600,2:1500,3:2300};
+  if(n.kind==='mentor') return 280;
+  const order={1:700,2:1500,3:2300};
   const peers = universe.nodes.filter(m=>m.gen===n.gen);
   const idx = peers.indexOf(n);
   return order[n.gen] + idx*120;
@@ -599,6 +609,7 @@ function nodeAppear(n){
 /* node visual radius */
 function nodeRadius(n){
   if(n.gen===0) return Math.max(16, Math.min(W,H)*0.022);
+  if(n.kind==='mentor') return Math.max(11, Math.min(W,H)*0.014);
   if(n.gen===1) return n.kind==='phd'?9:8;
   if(n.gen===2) return 6;
   return 5.5;
@@ -701,7 +712,7 @@ function draw(now){
     }
 
     // labels: center always; others on hover/focus or when zoomed in
-    const showLabel = n.gen===0 || isHot || cam.s>1.6;
+    const showLabel = n.gen===0 || n.kind==='mentor' || isHot || cam.s>1.6;
     if(showLabel && ap>0.6){
       ctx.globalAlpha=Math.min(1,(ap-0.6)/0.4);
       ctx.font = (n.gen===0?'600 ':'400 ') + (n.gen===0?Math.max(15,rad*0.9):13)+"px 'Cormorant Garamond', serif";
@@ -1045,7 +1056,7 @@ function wireEditor(){
 /* ---------- boot ---------- */
 const PRISTINE_HTML='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
 resize(); makeStars(); buildLegend();
-wireEditor(); checkDraft();
+wireEditor(); if(OWNER) checkDraft();
 if(!OWNER){ ['editToggle','addBtn','exportBtn'].forEach(id=>{ var el=document.getElementById(id); if(el) el.style.display='none'; }); }
 window.addEventListener('resize',makeStars);
 requestAnimationFrame(draw);
