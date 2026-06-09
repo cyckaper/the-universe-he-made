@@ -7,7 +7,7 @@
 <meta name="description" content="An Impact Map celebrating the retirement of Prof. William C. Sullivan (UIUC) — a map not of one man, but of everyone he changed." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=EB+Garamond:ital@0;1&family=Noto+Serif+TC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root{
     --void: #06060d;
@@ -275,6 +275,8 @@
     background:rgba(244,213,141,.1);border:1px solid rgba(244,213,141,.4);color:var(--gold);
     border-radius:40px;padding:10px;cursor:pointer;transition:all .3s;}
   #pedit:hover{background:rgba(244,213,141,.2);border-color:rgba(244,213,141,.65);color:var(--gold-bright);}
+
+  .title-tl .sub{font-family:'EB Garamond',serif;font-size:clamp(13px,1.7vw,18px);color:var(--ink-soft);letter-spacing:.04em;margin-top:.4em;}
 </style>
 </head>
 <body>
@@ -284,22 +286,22 @@
 <div class="corner title-tl" id="titleTL">
   <div class="eyebrow">A tribute to a teacher</div>
   <h1>The Universe<br>He Made</h1>
-  <div class="zh">獻給 William C. Sullivan 教授 · UIUC</div>
+  <div class="sub">For Prof. William C. Sullivan · UIUC</div>
 </div>
 
 <div class="corner counter" id="counterEl">
   <div class="num" id="countNum">0</div>
-  <div class="lbl">lives touched, and counting<br><span class="zh">被他觸動的生命，仍在增加</span></div>
+  <div class="lbl">lives touched, and counting</div>
 </div>
 
 <div class="legend corner" id="legendEl"></div>
 
 <div class="controls corner" id="controlsEl">
-  <button class="btn" id="editToggle">✎ 編輯<span class="zh">直接填資料</span></button>
-  <button class="btn" id="addBtn" style="display:none">＋ 新增星<span class="zh">Add a star</span></button>
-  <button class="btn" id="exportBtn" style="display:none">⤓ 匯出發布<span class="zh">Export &amp; publish</span></button>
-  <button class="btn" id="resetBtn">Recenter <span class="zh">回到中心</span></button>
-  <button class="btn" id="endBtn">What remains <span class="zh">他真正留下的</span></button>
+  <button class="btn" id="editToggle">✎ Edit</button>
+  <button class="btn" id="addBtn" style="display:none">＋ Add a star</button>
+  <button class="btn" id="exportBtn" style="display:none">⤓ Export &amp; publish</button>
+  <button class="btn" id="resetBtn">Recenter</button>
+  <button class="btn" id="endBtn">What remains</button>
 </div>
 
 <!-- info panel -->
@@ -312,42 +314,42 @@
   <div class="pdetail" id="pdetail"></div>
   <div class="pdetail zh" id="pdetailzh"></div>
   <div class="phint" id="phint"></div>
-  <button id="pedit">✎ 編輯這顆星 · Edit</button>
+  <button id="pedit">✎ Edit this star</button>
   <div id="editform" style="display:none">
-    <div class="erow" id="row_kind"><label>類型 Type</label>
+    <div class="erow" id="row_kind"><label>Type</label>
       <select id="f_kind">
-        <option value="phd">博士生 · Doctoral student</option>
-        <option value="masters">碩士生 · Master's student</option>
-        <option value="undergrad">大學生 · Undergraduate</option>
-        <option value="friend">朋友 · Friend</option>
-        <option value="student2">學生的學生 · Their student</option>
-        <option value="company">創立的事業 · Company</option>
-        <option value="research">延續的研究 · Research</option>
+        <option value="phd">Doctoral student</option>
+        <option value="masters">Master's student</option>
+        <option value="undergrad">Undergraduate</option>
+        <option value="friend">Friend</option>
+        <option value="student2">A student's student</option>
+        <option value="company">Company / venture</option>
+        <option value="research">Research</option>
       </select></div>
-    <div class="erow" id="row_gen"><label>層級 Layer</label>
+    <div class="erow" id="row_gen"><label>Layer</label>
       <select id="f_gen">
-        <option value="1">① 學生／朋友（最內圈）</option>
-        <option value="2">② 他們的學生</option>
-        <option value="3">③ 成果（公司／研究）</option>
+        <option value="1">① Student / Friend (inner ring)</option>
+        <option value="2">② Their student</option>
+        <option value="3">③ Outcome (company / research)</option>
       </select></div>
-    <div class="erow" id="row_parent"><label>環繞誰 Orbits</label>
+    <div class="erow" id="row_parent"><label>Orbits</label>
       <select id="f_parent"></select></div>
-    <div class="erow"><label>名字 Name</label><input id="f_name" type="text" placeholder="例：Kao Yu-Chieh 高語婕"></div>
-    <div class="erow"><label>身分／歷程 Role</label><input id="f_role" type="text" placeholder="例：Friend → Professor, NTU"></div>
-    <div class="erow"><label>想對 Bill 說的話 Message</label><textarea id="f_message" rows="4" placeholder="這個人的祝福或回憶…"></textarea></div>
-    <div class="erow"><label>說明 Detail（沒有留言時才顯示，可空白）</label><textarea id="f_detail" rows="2"></textarea></div>
+    <div class="erow"><label>Name</label><input id="f_name" type="text" placeholder="e.g. Kao Yu-Chieh"></div>
+    <div class="erow"><label>Role</label><input id="f_role" type="text" placeholder="e.g. Friend → Professor, NTU"></div>
+    <div class="erow"><label>Message to Bill</label><textarea id="f_message" rows="4" placeholder="Their words or memory…"></textarea></div>
+    <div class="erow"><label>Detail (shown only when there is no message)</label><textarea id="f_detail" rows="2"></textarea></div>
     <div class="edit-actions">
-      <button class="ebtn save" id="f_save">儲存 Save</button>
-      <button class="ebtn del" id="f_delete">刪除 Delete</button>
+      <button class="ebtn save" id="f_save">Save</button>
+      <button class="ebtn del" id="f_delete">Delete</button>
     </div>
   </div>
 </div>
 
 <!-- draft restore bar -->
 <div id="draftbar">
-  <span>偵測到上次未發布的草稿</span>
-  <button id="draftLoad">載入草稿</button>
-  <button id="draftDiscard">捨棄</button>
+  <span>Unpublished draft found</span>
+  <button id="draftLoad">Load draft</button>
+  <button id="draftDiscard">Discard</button>
 </div>
 
 <!-- intro -->
@@ -355,8 +357,7 @@
   <div class="seed"></div>
   <div class="lead">This is not a map of one man.</div>
   <div class="big">It is a map of everyone he changed.</div>
-  <div class="zh">這不是一個人的地圖，<br>而是被他改變的所有人。</div>
-  <button id="enter">ENTER THE UNIVERSE<span class="zh">進入這片星空</span></button>
+  <button id="enter">ENTER THE UNIVERSE</button>
 </div>
 
 <!-- ending -->
@@ -364,42 +365,37 @@
   <div class="star efade" style="animation-delay:.1s"></div>
   <div class="e1 efade" style="animation-delay:.4s">A teacher's truest legacy</div>
   <div class="e2 efade" style="animation-delay:1.1s">was never the papers.<br>It was the people who were changed.</div>
-  <div class="ezh efade" style="animation-delay:2.2s">一位老師真正留下的，<br>從來不是論文，<br>而是被改變的人。</div>
-  <div class="sig efade" style="animation-delay:3.2s">With gratitude, from your colleagues and students across the Pacific.<span class="zh">來自太平洋彼岸的同事與學生，獻上敬意。</span></div>
-  <button class="eback efade" id="ebackBtn" style="animation-delay:3.8s">Return to the stars</button>
+  <div class="sig efade" style="animation-delay:2.4s">With gratitude, from your colleagues and students across the Pacific.</div>
+  <button class="eback efade" id="ebackBtn" style="animation-delay:3s">Return to the stars</button>
 </div>
-<!-- 資料先載入（你編輯名單只需改這個檔），引擎其後 -->
+
 <script id="universe-data">
 /*__UNIVERSE_DATA_START__*/
 /* =====================================================================
    THE UNIVERSE HE MADE — Impact Map for Prof. William C. Sullivan
    ---------------------------------------------------------------------
-   ★ 如何編輯這片星空 / HOW TO EDIT ★
-   這個檔就是全部資料。把節點換成你認識的真實的人，或往 nodes 陣列再 push：
-     center : 中心（Sullivan 教授本人）
-     nodes  : 周圍的每一顆星。每個節點欄位：
-        id        唯一代號（英數，不可重複）
-        gen       世代：1 = 學生／朋友本人；2 = 他們的學生；3 = 成果（公司／研究）
-        parent    這顆星環繞的對象 id（gen1 環繞 'wcs'）
-        kind      類型，決定顏色：
-                  'phd' 'masters' 'undergrad' 'friend' 'student2' 'company' 'research'
-        name      顯示名字
-        role      一行身分／歷程，可用 → 表示「從…到…」
-        message   ★這個人想對 Bill 說的話（會以引言顯示，這是這份禮物的核心）
-        detail / detailZh   說明（沒有 message 時才會顯示；中文可留空）
-        placeholder: true   標示為「範例／待填」（虛線淡色顯示）
+   HOW TO EDIT (or just use the in-app editor: tap a star, then Edit)
+     center : the middle (Prof. Sullivan himself)
+     nodes  : every surrounding star. Fields:
+        id        unique short code (letters/numbers, no duplicates)
+        gen       layer: 1 = student/friend; 2 = their student; 3 = outcome
+        parent    the id this star orbits (gen1 orbits 'wcs')
+        kind      'phd' 'masters' 'undergrad' 'friend' 'student2' 'company' 'research'
+        name      display name
+        role      one-line path, use → for "from … to …"
+        message   what this person wants to say to Bill (shown as a quote)
+        detail    description (shown only when there is no message)
+        placeholder: true  marks an example star (dashed, dim)
    ===================================================================== */
 
 const universe = {
   center:{
     id:'wcs', name:'William C. Sullivan', kind:'center',
     role:'Professor & Head of Landscape Architecture · UIUC',
-    detail:"Co-founder of the Landscape and Human Health Laboratory. For decades he asked a single question — how do the landscapes we design shape human wellbeing? — and taught a generation to pursue it with both rigor and heart.",
-    detailZh:'景觀與人類健康實驗室（LHHL）共同創辦人。數十年來，他只問一個問題——我們所設計的地景，如何形塑人的身心健康？——並教會了一整個世代，用嚴謹與溫柔去追問它。'
+    detail:"Co-founder of the Landscape and Human Health Laboratory. For decades he asked a single question — how do the landscapes we design shape human wellbeing? — and taught a generation to pursue it with both rigor and heart."
   },
   nodes:[
-    /* ---------- GEN 1 · 學生與朋友 ---------- */
-
+    /* ---------- GEN 1 · students & friends ---------- */
     { id:'shelly', gen:1, parent:'wcs', kind:'phd',
       name:'Shih-Han “Shelly” Hung',
       role:"Exchange MS & PhD · dissertation committee → Assistant Professor, Master's Program in Biodiversity, National Taiwan University",
@@ -416,12 +412,12 @@ const universe = {
       message:"Thank you for your tireless dedication to teaching and your invaluable mentorship. May your retirement be filled with joy, rest, and abundant blessings." },
 
     { id:'kao', gen:1, parent:'wcs', kind:'masters',
-      name:'Kao Yu-Chieh 高語婕',
+      name:'Kao Yu-Chieh',
       role:"Master's Exchange (research project) → Landscape Designer, Classicdesign Co., Ltd.",
       message:"Although I was always nervous in class, learning with you at UIUC remains one of the most unforgettable memories of my life. Congratulations on your retirement!" },
 
     { id:'cyc', gen:1, parent:'wcs', kind:'friend',
-      name:'CYC · Chun-Yen Chang 張俊彥',
+      name:'CYC · Chun-Yen Chang',
       role:'Friend → Professor, National Taiwan University',
       message:"Now you're getting out of a long line of faculty meetings!" },
 
@@ -431,46 +427,42 @@ const universe = {
       message:"We have worked together, defended together, had dinner together, and drunk together. BUT — guess what — we never... sang together!! Happy retirement!" },
 
     { id:'jiang', gen:1, parent:'wcs', kind:'phd',
-      name:'Bin Jiang 江斌',
+      name:'Bin Jiang',
       role:'PhD → Associate Professor, University of Hong Kong',
-      detail:"Now leads the Virtual Reality Lab for Landscape & Health at HKU — carrying the green-space-and-stress question into immersive technology, and training a new generation of his own.",
-      detailZh:'現為香港大學副教授，主持景觀與健康虛擬實境實驗室，把「綠地與壓力」的提問帶進沉浸科技，並開始培養自己的下一代學生。' },
+      detail:"Now leads the Virtual Reality Lab for Landscape & Health at HKU — carrying the green-space-and-stress question into immersive technology, and training a new generation of his own." },
 
-    /* ---------- GEN 2 · 他們的學生（下一代，範例：可填入或刪除） ---------- */
+    /* ---------- GEN 2 · their students (examples: edit or delete) ---------- */
     { id:'g2_shelly', gen:2, parent:'shelly', kind:'student2', placeholder:true,
       name:'Her students at NTU', role:'The next generation',
-      detail:"Shelly now mentors her own students — the line continues. Click to name one, or delete this star.",
-      detailZh:'Shelly 如今也帶著自己的學生——這條線仍在延續。點此填入名字，或刪除這顆星。' },
+      detail:"Shelly now mentors her own students — the line continues. Tap Edit to name one, or delete this star." },
     { id:'g2_julie', gen:2, parent:'julie', kind:'student2', placeholder:true,
       name:'Her students at Fu Jen', role:'The next generation',
-      detail:"Click to edit or remove.", detailZh:'點此編輯或刪除。' },
+      detail:"Tap Edit to fill in, or delete." },
     { id:'g2_jiang', gen:2, parent:'jiang', kind:'student2', placeholder:true,
       name:"Bin Jiang's students at HKU", role:'The third generation',
-      detail:"Click to edit or remove.", detailZh:'點此編輯或刪除。' },
+      detail:"Tap Edit to fill in, or delete." },
 
-    /* ---------- GEN 3 · 延續的成果（研究／事業） ---------- */
+    /* ---------- GEN 3 · outcomes (research / ventures) ---------- */
     { id:'r_green', gen:3, parent:'jiang', kind:'research',
       name:'Green space & mental health',
       role:'A whole field of evidence',
-      detail:"Hundreds of studies worldwide now measure how nature restores attention, lowers stress and heals — a research tradition that traces back to this lab.",
-      detailZh:'今日全球已有數百項研究，量測自然如何恢復注意力、降低壓力、療癒身心——這條研究傳統，可以一路追溯回這間實驗室。' },
+      detail:"Hundreds of studies worldwide now measure how nature restores attention, lowers stress and heals — a research tradition that traces back to this lab." },
     { id:'r_research', gen:3, parent:'shelly', kind:'research', placeholder:true,
       name:'Research carried forward', role:'Ideas outliving their author',
-      detail:"Click to edit or remove — a paper, a method, a question your students keep building on.",
-      detailZh:'點此編輯或刪除——一篇論文、一個方法、一個被學生持續接力的提問。' }
+      detail:"Tap Edit to fill in, or delete — a paper, a method, a question students keep building on." }
   ]
 };
 
-/* ---------- kind → 顏色 / 標籤 ---------- */
+/* ---------- kind → colour / label ---------- */
 const KIND = {
-  center:   {c:'#f4d58d', en:'The teacher',          zh:'老師'},
-  phd:      {c:'#ffd27a', en:'Doctoral student',     zh:'博士生'},
-  masters:  {c:'#9ad0c2', en:"Master's student",     zh:'碩士生'},
-  undergrad:{c:'#c9e4a6', en:'Undergraduate',        zh:'大學生'},
-  friend:   {c:'#e7a6ce', en:'Friend',               zh:'朋友'},
-  student2: {c:'#b5a7e6', en:"A student's student",   zh:'學生的學生'},
-  company:  {c:'#f2a3a3', en:'Founded / built',       zh:'創立的事業'},
-  research: {c:'#87c5e8', en:'Research carried on',    zh:'延續的研究'}
+  center:   {c:'#f4d58d', en:'The teacher'},
+  phd:      {c:'#ffd27a', en:'Doctoral student'},
+  masters:  {c:'#9ad0c2', en:"Master's student"},
+  undergrad:{c:'#c9e4a6', en:'Undergraduate'},
+  friend:   {c:'#e7a6ce', en:'Friend'},
+  student2: {c:'#b5a7e6', en:"A student's student"},
+  company:  {c:'#f2a3a3', en:'Founded / built'},
+  research: {c:'#87c5e8', en:'Research carried on'}
 };
 const LEGEND_ORDER = ['phd','masters','friend','student2','company','research'];
 /*__UNIVERSE_DATA_END__*/
@@ -757,7 +749,7 @@ function selectNode(n){
   ['ptag','pname','prole'].forEach(id=>document.getElementById(id).style.display='');
   const k=KIND[n.kind]||KIND.research;
   document.getElementById('ptag').style.color=k.c;
-  document.getElementById('ptagtxt').textContent = (n.gen===0? k.en : k.en+' · '+k.zh);
+  document.getElementById('ptagtxt').textContent = k.en;
   document.getElementById('pname').textContent=n.name;
   document.getElementById('prole').textContent=n.role||'';
   const msgEl=document.getElementById('pmessage');
@@ -772,7 +764,7 @@ function selectNode(n){
     dzEl.textContent=n.detailZh||''; dzEl.style.display=n.detailZh?'block':'none';
   }
   const hint=document.getElementById('phint');
-  hint.textContent = n.placeholder ? '✎ 此為範例 — 開啟上方「編輯」即可直接填入，或刪除這顆星' : '';
+  hint.textContent = n.placeholder ? '✎ Example star — tap Edit to fill in real details, or delete it' : '';
   hint.style.display = n.placeholder?'block':'none';
   panel.classList.add('show');
   if(n.gen!==0){ cam.tx=n.x; cam.ty=n.y; cam.ts=Math.max(cam.ts,1.7); }
@@ -789,7 +781,7 @@ function buildLegend(){
   const el=document.getElementById('legendEl');
   el.innerHTML = LEGEND_ORDER.map(key=>{
     const k=KIND[key];
-    return `<div class="row"><span>${k.en}<span class="zh">${k.zh}</span></span><span class="dot" style="color:${k.c}"></span></div>`;
+    return `<div class="row"><span>${k.en}</span><span class="dot" style="color:${k.c}"></span></div>`;
   }).join('');
 }
 function animateCount(){
@@ -854,7 +846,7 @@ function uid(){ return 'n'+Math.random().toString(36).slice(2,8); }
 function setEditMode(on){
   editMode=on;
   document.body.classList.toggle('editing-mode',on);
-  $('editToggle').innerHTML = on ? '✓ 編輯中<span class="zh">點星星即可改</span>' : '✎ 編輯<span class="zh">直接填資料</span>';
+  $('editToggle').innerHTML = on ? '✓ Editing' : '✎ Edit';
   $('addBtn').style.display = on?'':'none';
   $('exportBtn').style.display = on?'':'none';
   closePanel();
@@ -862,7 +854,7 @@ function setEditMode(on){
 
 function populateParent(n){
   const sel=$('f_parent'); sel.innerHTML='';
-  const o0=document.createElement('option'); o0.value='wcs'; o0.textContent='★ '+center.name+'（中心）'; sel.appendChild(o0);
+  const o0=document.createElement('option'); o0.value='wcs'; o0.textContent='★ '+center.name+' (center)'; sel.appendChild(o0);
   universe.nodes.forEach(m=>{ if(n&&m.id===n.id)return; const o=document.createElement('option'); o.value=m.id; o.textContent=m.name; sel.appendChild(o); });
 }
 function toggleParentRow(){
@@ -905,10 +897,10 @@ function saveEditor(){
   if(m) n.message=m; else delete n.message;
   if(d) n.detail=d; else delete n.detail;
   rebuildIndex(); layout(); persistDraft();
-  const b=$('f_save'), t=b.textContent; b.textContent='已儲存 ✓'; setTimeout(()=>{b.textContent=t;},1100);
+  const b=$('f_save'), t=b.textContent; b.textContent='Saved ✓'; setTimeout(()=>{b.textContent=t;},1100);
 }
 function addStar(){
-  const n={id:uid(),gen:1,parent:'wcs',kind:'phd',name:'新的星 New star',role:'',message:''};
+  const n={id:uid(),gen:1,parent:'wcs',kind:'phd',name:'New star',role:'',message:''};
   universe.nodes.push(n); rebuildIndex(); layout(); persistDraft();
   if($('countNum')) $('countNum').textContent=universe.nodes.length;
   if(!editMode) setEditMode(true);
@@ -916,7 +908,7 @@ function addStar(){
 }
 function deleteStar(){
   const n=byId[editingId]; if(!n||n.gen===0) return;
-  if(!confirm('刪除「'+n.name+'」這顆星？此動作無法復原。')) return;
+  if(!confirm('Delete "'+n.name+'"? This cannot be undone.')) return;
   universe.nodes.forEach(c=>{ if(c.parent===n.id) c.parent=n.parent||'wcs'; });
   const i=universe.nodes.indexOf(n); if(i>=0) universe.nodes.splice(i,1);
   rebuildIndex(); layout(); persistDraft(); closePanel();
