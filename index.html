@@ -158,6 +158,7 @@
     position:absolute;z-index:30;right:clamp(16px,3vw,40px);
     top:50%;transform:translateY(-50%) translateX(40px);
     width:min(380px,82vw);
+    max-height:84vh;overflow-y:auto;
     background:linear-gradient(160deg, rgba(20,18,32,.86), rgba(10,9,18,.92));
     border:1px solid rgba(244,213,141,.22);border-radius:18px;
     padding:30px 30px 28px;backdrop-filter:blur(16px);
@@ -227,7 +228,7 @@
 
   @media(max-width:720px){
     .legend{display:none;}
-    #panel{top:auto;bottom:0;right:0;left:0;width:100%;transform:translateY(110%);
+    #panel{top:auto;bottom:0;right:0;left:0;width:100%;max-height:80vh;overflow-y:auto;transform:translateY(110%);
       border-radius:20px 20px 0 0;padding:24px 22px 30px;}
     #panel.show{transform:translateY(0);}
     .title-tl{max-width:72vw;}
@@ -374,11 +375,9 @@
 /* =====================================================================
    THE UNIVERSE HE MADE — Impact Map for Prof. William C. Sullivan
    ---------------------------------------------------------------------
-   Editing is owner-only. Open the site with #edit at the end of the URL
-   to get the edit tools (tap a star ▸ Edit, or ＋ Add a star), then use
-   ⤓ Export & publish to download an updated index.html and upload it to
-   GitHub. Visitors without #edit can only view.
-   Fields per node: id, gen(1/2/3), parent, kind, name, role, message, detail.
+   Editing is owner-only: open the site with #edit at the end of the URL
+   to get the edit tools, then ⤓ Export & publish and upload to GitHub.
+   Fields: id, gen(1/2/3), parent, kind, name, role, message, detail.
    ===================================================================== */
 
 const universe = {
@@ -388,55 +387,100 @@ const universe = {
     detail:"Co-founder of the Landscape and Human Health Laboratory. For decades he asked a single question — how do the landscapes we design shape human wellbeing? — and taught a generation to pursue it with both rigor and heart."
   },
   nodes:[
-    { id:'shelly', gen:2, parent:'cyc', kind:'phd',
-      name:'Shih-Han “Shelly” Hung',
-      role:"Exchange MS & PhD · dissertation committee → Assistant Professor, Master's Program in Biodiversity, National Taiwan University",
-      message:"Congratulations on your retirement, Bill. Over the past fifteen years, you have played an important role in my academic journey — as my master's and doctoral committee member, collaborator, mentor, and friend. Thank you for your encouragement, generosity, and unwavering support. I wish you a joyful, healthy, and rewarding retirement, and I look forward to staying connected in the years ahead 🙌😀🧡" },
+    /* ===== GEN 1 · orbiting Sullivan directly ===== */
 
+    /* -- friends & colleagues -- */
     { id:'cyc', gen:1, parent:'wcs', kind:'friend',
       name:'CYC · Chun-Yen Chang',
       role:'Friend → Professor, National Taiwan University',
       message:"Thank you, Bill! I truly appreciate all the hard work you've put into our friendship. Your kindness and energy really brighten up and warm up all our students. Your retirement will be another fantastic opportunity to help everyone around you. You've made CYC so famous!" },
-
-    { id:'kao', gen:2, parent:'cyc', kind:'masters',
-      name:'Kao Yu-Chieh 高語婕',
-      role:"Research project during Master's Exchange → Landscape Designer, Classicdesign Co., Ltd.",
-      message:"Although I was always nervous in class, learning with you at UIUC remains one of the most unforgettable memories of my life. Congratulations on your retirement!" },
 
     { id:'ou', gen:1, parent:'wcs', kind:'friend',
       name:'Sheng-Jung Ou',
       role:'Friend → Professor, National Chung Hsing University',
       message:"Congratulations on a magnificent and legendary career! Enjoy the freedom of your new life, and may this next chapter bring you the ultimate fulfillment and happiness." },
 
-    { id:'yuchen', gen:2, parent:'cyc', kind:'phd',
-      name:'Yu-Chen Yeh',
-      role:'PhD dissertation committee → Assistant Professor, Dept. of Leisure Industry & Health Promotion, National Taipei University of Nursing and Health Sciences',
-      message:"Thank you, Bill, for being part of my PhD journey. Your guidance and encouragement meant a lot to me. Congratulations on your retirement, and I wish you happiness, good health, and many wonderful adventures ahead!" },
-
     { id:'huimei', gen:1, parent:'wcs', kind:'friend',
       name:'Hui-Mei Chen 陳惠美',
       role:'Friend → Professor, National Taiwan University',
       message:"Through our brief interactions on several occasions, I have deeply felt your wisdom in sharing professional expertise with warmth and humor, which has inspired me to become a better person." },
-
-    { id:'julie', gen:2, parent:'cyc', kind:'phd',
-      name:'Julie · Yu-Hsin Tung',
-      role:"Master's Exchange & PhD · dissertation committee → Assistant Professor, Fu Jen Catholic University",
-      message:"Thank you for your tireless dedication to teaching and your invaluable mentorship. May your retirement be filled with joy, rest, and abundant blessings." },
 
     { id:'ckcheng', gen:1, parent:'wcs', kind:'friend',
       name:'CK Cheng 鄭佳昆',
       role:'Friend → Associate Professor, National Taiwan University',
       message:"Congratulations on your retirement, Dr. Sullivan! Thank you for your remarkable contributions to the field of Landscape Architecture and to generations of students. Wishing you a joyful new chapter filled with health, freedom, and well-deserved happiness." },
 
-    { id:'lichih', gen:2, parent:'cyc', kind:'phd',
-      name:'Li-Chih Ho 何立智',
-      role:'Dissertation committee → Professor, Tunghai University',
-      message:"Thank you for asking the questions that challenged me to think deeper and see further. Congratulations on your retirement, and best wishes for the exciting journey ahead." },
-
     { id:'yinghung', gen:1, parent:'wcs', kind:'friend',
       name:'Ying-Hung Li',
       role:'Friend → Professor, Feng Chia University',
-      message:"We have worked together, oral defense together, dinner together, and drinking together. BUT — guess what — we never... sang together!! Happy retirement!" }
+      message:"We have worked together, oral defense together, dinner together, and drinking together. BUT — guess what — we never... sang together!! Happy retirement!" },
+
+    { id:'rachel', gen:1, parent:'wcs', kind:'friend',
+      name:'Rachel Kaplan',
+      role:"Bill's doctoral advisor, colleague & friend → Professor Emerita, School for Environment and Sustainability, University of Michigan",
+      message:"Yet another of your many wise decisions! I can't wait to see what mischief and good deeds the next N years will produce. I look forward to your telling me about it and continuing to learn from your doings and thoughtfulness. — Rachel" },
+
+    { id:'jason', gen:1, parent:'wcs', kind:'friend',
+      name:'Jason Duvall',
+      role:'Colleague, co-author, mentor & friend → Lecturer, Program in the Environment, University of Michigan',
+      message:"I've been so impressed hearing about all the great work you'd done with Rokwire. I'm certain your thoughtfulness, dedication, and positive spirit will be missed, but I also know you'll find some new adventures. Congrats and best wishes! — Jason" },
+
+    /* -- Bill's own doctoral students -- */
+    { id:'chiaching', gen:1, parent:'wcs', kind:'phd',
+      name:'Chia-Ching Wu 吳佳靜',
+      role:"PhD student → Texas A&M University",
+      message:"Hi Bill, thank you so much for all the time, experience, and wisdom that you have shared with me. When I face difficult situations, I wonder what you would say and do. I clearly still have a long way to go — but I wonder what you will do next. Happy retirement! Chia-Ching" },
+
+    { id:'tum', gen:1, parent:'wcs', kind:'phd',
+      name:'Pongsakorn “Tum” Suppakittpaisarn',
+      role:'PhD student → Associate Professor, Landscape Design & Environmental Management, Faculty of Agriculture, Chiang Mai University, Thailand',
+      message:"Hi Bill, one class in the Spring semester of 2009 changed my life — the Behavioral Factors in Design class you taught. It's been 17 years of the joy of knowing you: the undergraduate research group, the PhD, even afterwards — you remain a strong supportive root that held me through my academic life. Your warmth and kindness, along with the ways you teach and research, have greatly inspired me to be the man I am today. I am a sneaky Prometheus that stole a flame from one land to another — and the flame came from your hearth. A branch of environmental psychology in landscape architecture started growing here, and you are one of the moving forces for that. And now that I have graduated my first graduate student from Myanmar, the flame of knowledge is lighting up the world! Even outside of academia, you gave me advice about life — about how to be a teacher, a father, and a man that I ought to be. I am grateful for all those things, and I hope we can continue this conversation after you retire!! Give me some signs if you plan to come to Thailand. Baby Thyme wants to say hello! Best, Tum" },
+
+    { id:'kweon', gen:1, parent:'wcs', kind:'phd',
+      name:'Byoung-Suk Kweon',
+      role:'PhD student → Professor, University of Maryland',
+      message:"The education and training I received from Bill provided a solid foundation for my work as a professor and researcher; his impact on my life is priceless. He has supported me through difficult times and celebrated my successes with a warm smile. I am incredibly fortunate to have an academic father like Bill. Thank you so much, Bill. My entire family and I love you!" },
+
+    { id:'dongying', gen:1, parent:'wcs', kind:'phd',
+      name:'Dongying Li',
+      role:'PhD student → Texas A&M University',
+      message:"Thank you so much for the guidance and support you've given me throughout the years. I learned so much — and continue to learn — about how to conduct rigorous research and present scholarly ideas from you. Beyond research, I learned the importance of integrity: how to be an upright person, to think independently, and to stand up for what I believe is right. Thank you for always believing in me, even during times when I doubted myself. Your confidence in my abilities gave me the encouragement to keep moving forward and strive for more than I thought I was capable of. Being your PhD student was one of the luckiest and most transformative opportunities I've had in my life. Congratulations on your retirement, and best wishes for a happy and fulfilling next chapter!" },
+
+    { id:'shreyonti', gen:1, parent:'wcs', kind:'phd',
+      name:'Shreyonti Chakraborty',
+      role:'Current PhD candidate, UIUC (advised by Prof. William C. Sullivan)',
+      message:"Bill saved my education at a particularly difficult time in my life, and turned my learning around. Whatever I have accomplished during my PhD is all thanks to Bill! Every piece of feedback he has ever given me has been transformative, elevating me to a higher level as a teacher and scholar. Moreover, the strength and dignity he displayed in the face of personal difficulties has been inspiring. He is the warmest, kindest teacher I have had, and a role model for me as I aspire to a career in academia. Regardless of what happens in my future, my experience with Bill will always remind me that good people exist, and that a good guide and advocate can change your life!" },
+
+    { id:'xiaolu', gen:1, parent:'wcs', kind:'phd',
+      name:'Xiaolu Zhou',
+      role:'PhD student → Associate Professor, Texas Christian University (TCU)',
+      message:"Dear Bill, congratulations on your retirement! I feel incredibly fortunate to have had you as my PhD advisor. Your guidance and support shaped not only my research but the way I think about scholarship and mentorship. The lessons I learned from you continue to guide me in my own work and with my own students. Thank you for the lasting impact you've had on my career and life. Wishing you a joyful and well-deserved retirement!" },
+
+    /* ===== GEN 2 · CYC's students (orbiting CYC) ===== */
+    { id:'shelly', gen:2, parent:'cyc', kind:'phd',
+      name:'Shih-Han “Shelly” Hung',
+      role:"Exchange MS & PhD · dissertation committee → Assistant Professor, Master's Program in Biodiversity, National Taiwan University",
+      message:"Congratulations on your retirement, Bill. Over the past fifteen years, you have played an important role in my academic journey — as my master's and doctoral committee member, collaborator, mentor, and friend. Thank you for your encouragement, generosity, and unwavering support. I wish you a joyful, healthy, and rewarding retirement, and I look forward to staying connected in the years ahead 🙌😀🧡" },
+
+    { id:'kao', gen:2, parent:'cyc', kind:'masters',
+      name:'Kao Yu-Chieh 高語婕',
+      role:"Research project during Master's Exchange → Landscape Designer, Classicdesign Co., Ltd.",
+      message:"Although I was always nervous in class, learning with you at UIUC remains one of the most unforgettable memories of my life. Congratulations on your retirement!" },
+
+    { id:'yuchen', gen:2, parent:'cyc', kind:'phd',
+      name:'Yu-Chen Yeh',
+      role:'PhD dissertation committee → Assistant Professor, Dept. of Leisure Industry & Health Promotion, National Taipei University of Nursing and Health Sciences',
+      message:"Thank you, Bill, for being part of my PhD journey. Your guidance and encouragement meant a lot to me. Congratulations on your retirement, and I wish you happiness, good health, and many wonderful adventures ahead!" },
+
+    { id:'julie', gen:2, parent:'cyc', kind:'phd',
+      name:'Julie · Yu-Hsin Tung',
+      role:"Master's Exchange & PhD · dissertation committee → Assistant Professor, Fu Jen Catholic University",
+      message:"Thank you for your tireless dedication to teaching and your invaluable mentorship. May your retirement be filled with joy, rest, and abundant blessings." },
+
+    { id:'lichih', gen:2, parent:'cyc', kind:'phd',
+      name:'Li-Chih Ho 何立智',
+      role:'Dissertation committee → Professor, Tunghai University',
+      message:"Thank you for asking the questions that challenged me to think deeper and see further. Congratulations on your retirement, and best wishes for the exciting journey ahead." }
   ]
 };
 
