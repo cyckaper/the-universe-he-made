@@ -514,6 +514,11 @@ const universe = {
       role:'Friend → Associate Professor, National Taiwan University',
       message:"I always remember your warm smile, your genuine “how are you?”, and your captivating speeches. Wishing you the absolute best in your exciting next chapter. Happy retirement!" },
 
+    { id:'nancy', gen:1, parent:'wcs', kind:'friend',
+      name:'Nancy M. Wells',
+      role:'Academic sibling, colleague & friend → Professor of Human Centered Design, College of Human Ecology, Cornell University',
+      message:"Congratulations, Bill! I'm excited for this next chapter of your endeavors and hope we'll continue to have opportunities to share and connect. Thank you for your wonderful contributions, your thoughtfulness, and for being a great academic sib!" },
+
     /* -- Bill's own doctoral students -- */
     { id:'chiaching', gen:1, parent:'wcs', kind:'phd',
       name:'Chia-Ching Wu 吳佳靜',
@@ -1123,7 +1128,7 @@ function openBook(){
     const paras=String(n.message).split(/\n+/).map(p=>'<p>'+escH(p)+'</p>').join('');
     return '<article><h2>'+escH(n.name)+'</h2><div class="role">'+role+'</div>'+paras+'</article>';
   }).join('');
-  const stats=universe.nodes.length+' voices · 16 institutions · 4 countries & regions';
+  const stats=universe.nodes.length+' voices · 17 institutions · 4 countries & regions';
   const html='<!DOCTYPE html><html><head><meta charset="utf-8"><title>The Universe He Made — Memory Book</title><style>'
    +'@page{margin:18mm}'
    +'body{font-family:Georgia,"Times New Roman","Noto Serif TC",serif;color:#241f17;background:#fbf7ef;margin:0;padding:40px 9%;line-height:1.7}'
@@ -1389,7 +1394,7 @@ function endTour(toEnding){
 }
 function fillStats(){
   const el=$('estats'); if(!el) return;
-  el.textContent = universe.nodes.length+' voices · 16 institutions · 4 countries & regions — and this map is only beginning.';
+  el.textContent = universe.nodes.length+' voices · 17 institutions · 4 countries & regions — and this map is only beginning.';
 }
 
 function wireEditor(){
