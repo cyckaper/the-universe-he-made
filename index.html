@@ -337,6 +337,23 @@
     transition:all .3s;}
   #bookBtn:hover{border-color:var(--gold);color:var(--gold);}
   @media (max-height:760px){ #ending{justify-content:flex-start;padding-top:56px;} }
+
+  /* ===== mobile layout fix: keep controls off the title ===== */
+  @media(max-width:720px){
+    .controls{
+      top:auto;
+      bottom:clamp(16px,4vw,28px);
+      left:50%; right:auto;
+      transform:translateX(-50%);
+      justify-content:center;
+      gap:8px;
+      max-width:96vw;
+    }
+    .btn{padding:8px 14px;font-size:13.5px;}
+    .controls .btn .zh{font-size:12px;}
+    .counter{bottom:clamp(80px,17vw,108px);}
+    body.touring .title-tl{opacity:0;pointer-events:none;transition:opacity .7s ease;}
+  }
 </style>
 </head>
 <body>
